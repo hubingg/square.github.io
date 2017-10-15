@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/square.css">
+    <link rel="stylesheet" href="./static/iconfont.css">
+</head>
+<body>
+    <div id="box">
+        <div class="game" id="game">
+            <table id="tbl">
+
+            </table>
+        </div>
+        <div class="next" id="next">
+            <table id="nextTbl">
+                <tr><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td></tr>
+            </table>
+        </div>
+        <div class="info">
+            总得分：<span id="score"></span>
+            </br>
+            用时：<span id="time"></span>
+            <div id="stop">暂停</div>
+            <div id="start">开始</div>
+        </div>
+        <div class="ctrl">
+            <div class="down" id="down">
+                <span class="iconfont icon-moreunfold"></span>
+            </div>
+            <div class="left" id="left">
+                <span class="iconfont icon-back"></span>
+            </div>
+            <div class="right" id="right">
+                <span class="iconfont icon-more"></span>
+            </div>
+            <div class="stop" id="rotate">
+                <span class="iconfont icon-zanting"></span>
+            </div>
+        </div>
+    </div>
+<script src="./js/square.js"></script>
+</body>
+</html>

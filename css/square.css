@@ -1,0 +1,106 @@
+html,body{
+    height:100%;  
+}
+*{
+    padding: 0;
+    margin: 0;
+}
+table{
+    border-collapse:collapse
+}
+#box{
+    width: 100%;
+    height:100%;
+    border: 1px solid #f1cd11;
+    padding: 10px;
+}
+#box .game{
+    height: 520px;
+    width: 220px;
+    /* background-color: red; */
+    border:1px solid red;
+    position: absolute;
+}
+#box .next{
+    width: 80px;
+    height: 80px;
+    border: 1px solid blueviolet;
+    margin-left: 10px;
+    position: absolute;
+    top: 20px;
+    right:20px;
+}
+.next table tr td{
+    width: 20px;
+    height:20px;
+    border: 1px solid blue;
+    box-sizing: border-box;
+}
+#box .info{
+    width: 80px;
+    position: absolute;
+    right:20px;
+    top:100px;
+}
+.none,.current,.done{
+    /* width: 20px;
+    height:20px;
+    box-sizing: border-box;
+    position: absolute; */
+}
+#box #tbl tr td{
+    width: 20px;
+    height:20px;
+    border: 1px solid blue;
+    box-sizing: border-box;
+}
+.none{
+    background-color: #f2f2f2;
+    border: 1px solid blue;
+}
+.current{
+    background-color: pink;
+    border: 1px solid red;
+}
+.done{
+    background-color: gray;
+    border: 1px solid black;
+}
+#box .ctrl{
+    width: 100px;
+    height: 100px;
+    margin-left: 10px;
+    position: absolute;
+    bottom: 200px;
+    right:20px;
+}
+#box .ctrl ul{
+    height: 100%;
+}
+#box .ctrl div{
+    width: 50%;
+    height: 50%;
+    border:1px solid red;
+    float: left;
+    box-sizing: border-box;
+    position: absolute;
+    border-radius:50%; 
+    text-align: center;
+    line-height: 50px;
+}
+#box .ctrl div.down{
+    bottom: -10%;
+    left:25%;
+}
+#box .ctrl div.stop{
+    top: -10%;
+    left:25%;
+}
+#box .ctrl div.left{
+    top: 25%;
+    left:-10%;
+}
+#box .ctrl div.right{
+    top: 25%;
+    right:-10%;
+}
