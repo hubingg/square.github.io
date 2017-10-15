@@ -1,3 +1,4 @@
+
 let downDom=document.getElementById("down");
 let rightDom=document.getElementById("right");
 let leftDom=document.getElementById("left");
@@ -21,6 +22,9 @@ stopDom.onclick=function(){
     clearInterval(timer); 
 }
 startDom.onclick=function(){
+    if(timer){
+        clearInterval(timer); 
+    }
     start();
 }
 continueDom.onclick=function(){

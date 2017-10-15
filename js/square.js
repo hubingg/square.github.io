@@ -1,6 +1,6 @@
 //初始化，生成网格
 let init=()=>{
-    for(let i=0;i<24;i++){
+    for(let i=0;i<23;i++){
         let td=[];
         let tr=document.createElement('tr');
         for(let j=0;j<11;j++){
@@ -40,8 +40,7 @@ let gameData=[
     [0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0]
 ];
 //随机生成7中形状,把网格想象成坐标，对应的数字表示小方块的位置，x表示垂直方向
 function setSquare(){      
@@ -106,7 +105,7 @@ function clear(){
     }      
 } 
 function clearBox(){      
-    for(var i=0; i<24; i++){     
+    for(var i=0; i<23; i++){     
         for(var j=0; j<11; j++){     
             tbl.rows[i].cells[j].style.backgroundColor = "white";     
         }     
@@ -118,7 +117,7 @@ function paint(){
     }      
 }
 function paintBox(){//根据gameData
-    for(var i=0;i<24;i++){     
+    for(var i=0;i<23;i++){     
         for(var j=0; j<11; j++){      
           if(gameData[i][j]==1){    
             tbl.rows[i].cells[j].style.backgroundColor = "red";     
@@ -128,7 +127,7 @@ function paintBox(){//根据gameData
 }   
 //检查坐标是否合法
 function isValid(x, y){      
-    if(x>23||x<0||y>10||y<0){      
+    if(x>22||x<0||y>10||y<0){      
         return false;      
     }      
     if(gameData[x][y]==1){//表示有已下落方块    
@@ -156,7 +155,7 @@ function clearNext(){
 //下落边缘检测
 function checkBottomBorder(){      
     for(var i=0; i<curBlock.length; i++){      
-        if(curBlock[i].x==24){      
+        if(curBlock[i].x==23){      
             return false;      
         }
         if(!isValid(curBlock[i].x+1, curBlock[i].y)){      
@@ -342,7 +341,7 @@ let rotate=function(){
 //消行
  function deleteLine(){     
     let lines = 0;     
-    for(var i=0; i<24; i++){          
+    for(var i=0; i<23; i++){          
         for(var j=0; j<gameData[0].length; j++){   
             if(gameData[i][j]==0){//只要有一个未填满就不向下执行     
                 break;     
@@ -367,17 +366,7 @@ let first=false;
 function start(){
     if(first){
         gameData=[
-            [0,0,0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0], 
-            [0,0,0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0],
+           [0,0,0,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0,0,0,0],
@@ -391,15 +380,26 @@ function start(){
             [0,0,0,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0], 
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0]
         ];
         clear();
         clearNext();
         clearBox();
+        clearInterval(timer);
     }
     curBlock = setSquare();    
     nextBlock = setSquare();     
     paint();    
     paintNext();    
     timer=setInterval(down,250);
+    time=0;
     first=true;
 }
