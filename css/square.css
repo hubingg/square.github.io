@@ -1,5 +1,10 @@
-html,body{
-    height:100%;  
+html,body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-user-select: none; 
+    user-select: none;
 }
 *{
     padding: 0;
@@ -13,9 +18,13 @@ table{
     height:100%;
     border: 1px solid #f1cd11;
     padding: 10px;
+    box-sizing: border-box;
+}
+#box #btn{
+    margin: 10px 0;
 }
 #box .game{
-    height: 520px;
+    height: 480px;
     width: 220px;
     /* background-color: red; */
     border:1px solid red;
@@ -33,30 +42,24 @@ table{
 .next table tr td{
     width: 20px;
     height:20px;
-    border: 1px solid blue;
+    border: 1px solid #0095cd;
     box-sizing: border-box;
 }
 #box .info{
-    width: 80px;
+    width: 100px;
     position: absolute;
     right:20px;
     top:100px;
 }
-.none,.current,.done{
-    /* width: 20px;
-    height:20px;
-    box-sizing: border-box;
-    position: absolute; */
-}
 #box #tbl tr td{
     width: 20px;
     height:20px;
-    border: 1px solid blue;
+    border: 1px solid #0095cd;
     box-sizing: border-box;
 }
 .none{
     background-color: #f2f2f2;
-    border: 1px solid blue;
+    border: 1px solid #0095cd;
 }
 .current{
     background-color: pink;
@@ -71,8 +74,8 @@ table{
     height: 100px;
     margin-left: 10px;
     position: absolute;
-    bottom: 200px;
-    right:20px;
+    bottom: 50px;
+    right:10px;
 }
 #box .ctrl ul{
     height: 100%;
@@ -103,4 +106,31 @@ table{
 #box .ctrl div.right{
     top: 25%;
     right:-10%;
+}
+.blue {
+    color: #d9eef7;
+    border: solid 1px #0076a3;
+    background: #0095cd;
+    background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+    background: -moz-linear-gradient(top, #00adee, #0078a5);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00adee', endColorstr='#0078a5');
+}
+.button {
+    display: inline-block;
+    zoom: 1;
+    vertical-align: baseline;
+    margin: 0 2px;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font: 14px/100% Arial, Helvetica, sans-serif;
+    padding: .5em 1em .55em;
+    text-shadow: 0 1px 1px rgba(0,0,0,.3);
+    -webkit-border-radius: .5em;
+    -moz-border-radius: .5em;
+    border-radius: .5em;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
 }

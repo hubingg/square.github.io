@@ -1,6 +1,6 @@
 //初始化，生成网格
 let init=()=>{
-    for(let i=0;i<26;i++){
+    for(let i=0;i<24;i++){
         let td=[];
         let tr=document.createElement('tr');
         for(let j=0;j<11;j++){
@@ -13,7 +13,8 @@ let init=()=>{
     }
 }
 init();
-let tbl = document.getElementById("tbl");    
+let tbl = document.getElementById("tbl");  
+let timer="";  
 let nextTbl = document.getElementById("nextTbl");  
 //生成网格数据，为二维数组，0表示没有，1表示已下落，2表示当前正在下落
 let gameData=[
@@ -41,8 +42,6 @@ let gameData=[
     [0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0]
 ];
 //随机生成7中形状,把网格想象成坐标，对应的数字表示小方块的位置，x表示垂直方向
 function setSquare(){      
@@ -99,7 +98,6 @@ function setSquare(){
             break;      
         }     
     }    
-    console.log(block);
     return block;     
 } 
 function clear(){      
@@ -108,7 +106,7 @@ function clear(){
     }      
 } 
 function clearBox(){      
-    for(var i=0; i<26; i++){     
+    for(var i=0; i<24; i++){     
         for(var j=0; j<11; j++){     
             tbl.rows[i].cells[j].style.backgroundColor = "white";     
         }     
@@ -120,13 +118,9 @@ function paint(){
     }      
 }
 function paintBox(){//根据gameData
-    console.log(gameData);
-    console.log(tbl.rows);
-    for(var i=0;i<26;i++){     
+    for(var i=0;i<24;i++){     
         for(var j=0; j<11; j++){      
-          if(gameData[i][j]==1){
-            console.log(i,j);
-            console.log(tbl.rows[i].cells[j]);     
+          if(gameData[i][j]==1){    
             tbl.rows[i].cells[j].style.backgroundColor = "red";     
           }     
         }      
@@ -134,7 +128,7 @@ function paintBox(){//根据gameData
 }   
 //检查坐标是否合法
 function isValid(x, y){      
-    if(x>25||x<0||y>10||y<0){      
+    if(x>23||x<0||y>10||y<0){      
         return false;      
     }      
     if(gameData[x][y]==1){//表示有已下落方块    
@@ -150,8 +144,6 @@ let nextBlock=copyBlock(curBlock);
 
 function clearNext(){      
     for(var i=0; i<4; i++){
-        console.log(nextBlock);
-        // nextBlock[i].y-=3;     
         nextTbl.rows[nextBlock[i].x].cells[nextBlock[i].y].style.backgroundColor="white";      
     }      
 }
@@ -164,7 +156,7 @@ function clearNext(){
 //下落边缘检测
 function checkBottomBorder(){      
     for(var i=0; i<curBlock.length; i++){      
-        if(curBlock[i].x==26){      
+        if(curBlock[i].x==24){      
             return false;      
         }
         if(!isValid(curBlock[i].x+1, curBlock[i].y)){      
@@ -174,13 +166,11 @@ function checkBottomBorder(){
     return true;      
 } 
 function validateBlock(block){    
-    if(!block){    
-        //alert("next block is null.");    
+    if(!block){      
         return false;    
     }    
     for(var i=0; i<4; i++){     
         if(!isValid(block[i].x, block[i].y)){    
-            //alert("a cell is invalid.");    
             return false;     
         }     
     }    
@@ -251,7 +241,6 @@ let down=function(){
         }      
 }
 function totalTime(timeCount){
-    console.log(timeCount);
     if(timeCount==5){
         timeCount=0;
         time++;
@@ -344,30 +333,6 @@ let rotate=function(){
 }
 
 
-let downDom=document.getElementById("down");
-let rightDom=document.getElementById("right");
-let leftDom=document.getElementById("left");
-let rotateDom=document.getElementById("rotate");
-let stopDom=document.getElementById("stop");
-let startDom=document.getElementById("start");
-downDom.onclick=function(){
-    down();
-}
-leftDom.onclick=function(){
-    left();
-}
-rightDom.onclick=function(){
-    right();
-}
-rotateDom.onclick=function(){
-    rotate();
-}
-stopDom.onclick=function(){
-    clearInterval(timer);  
-}
-startDom.onclick=function(){
-    timer = setInterval(down,250) 
-}
 //产生一个空白行.         
  function updateGameData(){      
     for(var i=0; i<4; i++){      
@@ -377,7 +342,7 @@ startDom.onclick=function(){
 //消行
  function deleteLine(){     
     let lines = 0;     
-    for(var i=0; i<26; i++){          
+    for(var i=0; i<24; i++){          
         for(var j=0; j<gameData[0].length; j++){   
             if(gameData[i][j]==0){//只要有一个未填满就不向下执行     
                 break;     
@@ -386,11 +351,6 @@ startDom.onclick=function(){
         if(j==gameData[0].length){//消除    
             lines++;     
             if(i!=0){  
-                // for(let m=i; m>0; m--){          
-                //     for(let j=0; j<gameData[0].length; j++){ 
-                //         gameData[m][j]=gameData[m-1][j];
-                //     }
-                // }
                 for(var k=i-1; k>=0; k--){     
                     gameData[k+1] = gameData[k];     
                 }    
@@ -401,14 +361,45 @@ startDom.onclick=function(){
             
         }     
     }
-    console.log(gameData);     
-    return lines;     
+     return lines;     
 }     
+let first=false;
 function start(){
+    if(first){
+        gameData=[
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0], 
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0], 
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0],
+        ];
+        clear();
+        clearNext();
+        clearBox();
+    }
     curBlock = setSquare();    
     nextBlock = setSquare();     
     paint();    
     paintNext();    
     timer=setInterval(down,250);
+    first=true;
 }
-start();
